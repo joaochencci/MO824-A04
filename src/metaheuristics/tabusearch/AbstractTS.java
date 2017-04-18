@@ -24,6 +24,12 @@ public abstract class AbstractTS<E> {
 	 * screen
 	 */
 	public static boolean verbose = true;
+	
+	/**
+	 * flag that indicates whether the code should print more information on
+	 * screen
+	 */
+	public static boolean first = false;
 
 	/**
 	 * a random number generator
@@ -130,7 +136,7 @@ public abstract class AbstractTS<E> {
 	 * {@link #incumbentSol}. In other words, this method is responsible for
 	 * updating the costs of the candidate solution elements.
 	 */
-	public abstract void updateCL();
+	public abstract void updateCL(Solution<E> solution);
 
 	/**
 	 * Creates a new solution which is empty, i.e., does not contain any
@@ -139,6 +145,14 @@ public abstract class AbstractTS<E> {
 	 * @return An empty solution.
 	 */
 	public abstract Solution<E> createEmptySol();
+	
+	/**
+	 * Creates a new solution which is empty, i.e., does not contain any
+	 * candidate solution element.
+	 * 
+	 * @return An empty solution.
+	 */
+	public abstract void sortSol(Solution<E> solution);
 
 	/**
 	 * The TS local search phase is responsible for repeatedly applying a
@@ -175,7 +189,7 @@ public abstract class AbstractTS<E> {
 	    // false, continua a execução
 	    // true = encerra a execução
 	    // 1800000 ms = 30*60*1000  = 30 min
-	   return (count == 5 || (endTime - startTime) >= 1800000); 
+	   return (count == iterations || (endTime - startTime) >= 1800000); 
 	}
 
 	/**
@@ -213,7 +227,7 @@ public abstract class AbstractTS<E> {
 
 			Double maxCost = Double.NEGATIVE_INFINITY, minCost = Double.POSITIVE_INFINITY;
 			incumbentCost = incumbentSol.cost;
-			updateCL();
+			updateCL(incumbentSol);
 
 			/*
 			 * Explore all candidate elements to enter the solution, saving the
@@ -264,13 +278,13 @@ public abstract class AbstractTS<E> {
 		constructiveHeuristic();
 		TL = makeTL();
 		startTime = System.currentTimeMillis();
-		for (int i = 0; i < iterations; i++) {
-			if(!solveStopCriteria(bestSol.cost)) {
-				neighborhoodMove();
-				if (bestSol.cost > incumbentSol.cost) {
-					bestSol = new Solution<E>(incumbentSol);
-					if (verbose)
-						System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+		while(!solveStopCriteria(bestSol.cost)) {
+			neighborhoodMove();
+			if (bestSol.cost > incumbentSol.cost) {
+				bestSol = new Solution<E>(incumbentSol);
+				if (verbose) {
+					this.sortSol(bestSol);
+					System.out.println("BestSol = " + bestSol);
 				}
 			}
 		}

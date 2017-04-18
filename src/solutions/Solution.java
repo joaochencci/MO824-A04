@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @SuppressWarnings("serial")
 public class Solution<E> extends ArrayList<E> {
@@ -15,7 +16,7 @@ public class Solution<E> extends ArrayList<E> {
 		super(sol);
 		cost = sol.cost;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Solution: cost=[" + cost + "], size=[" + this.size() + "], elements=" + super.toString();

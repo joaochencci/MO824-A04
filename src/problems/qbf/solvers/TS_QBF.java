@@ -4,6 +4,7 @@ import java.util.Random;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import metaheuristics.tabusearch.AbstractTS;
 import problems.qbf.QBF_Inverse;
@@ -22,6 +23,9 @@ import solutions.Solution;
 public class TS_QBF extends AbstractTS<Integer> {
 	
 	private final Integer fake = new Integer(-1);
+	private final Boolean randomMode = true;
+	
+	static Random random = new Random(0);
 
 	/**
 	 * Constructor for the TS_QBF class. An inverse QBF objective function is
@@ -88,9 +92,18 @@ public class TS_QBF extends AbstractTS<Integer> {
 	 * @see metaheuristics.tabusearch.AbstractTS#updateCL()
 	 */
 	@Override
-	public void updateCL() {
+	public void updateCL(Solution<Integer> solution) {
 
-		// do nothing
+		CL.clear();
+		for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
+			Integer cand = new Integer(i);
+			Integer left = new Integer(i-1);
+			Integer right = new Integer(i+1); 
+			if(!(solution.contains(cand) || solution.contains(left) || solution.contains(right))) {
+				CL.add(cand);
+			}
+		}
+
 
 	}
 
@@ -107,6 +120,13 @@ public class TS_QBF extends AbstractTS<Integer> {
 		sol.cost = 0.0;
 		return sol;
 	}
+	
+	private Boolean checkRandomMode() {
+		if(randomMode) {
+			return random.nextBoolean();
+		}
+		return true;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -119,54 +139,67 @@ public class TS_QBF extends AbstractTS<Integer> {
 
 		Double minDeltaCost;
 		Integer bestCandIn = null, bestCandOut = null;
+		boolean flag = false;
 
 		minDeltaCost = Double.POSITIVE_INFINITY;
-		Random random = new Random();
-		updateCL();
+		updateCL(incumbentSol);
 		// Evaluate insertions
 		for (Integer candIn : CL) {
-			Double deltaCost = ObjFunction.evaluateInsertionCost(candIn, incumbentSol);
-			if (!TL.contains(candIn) || incumbentSol.cost+deltaCost < bestSol.cost) {
-				if (deltaCost < minDeltaCost) {
-					if(random.nextBoolean()) {
+			if(checkRandomMode()) {
+				Double deltaCost = ObjFunction.evaluateInsertionCost(candIn, incumbentSol);
+				if (!TL.contains(candIn) || incumbentSol.cost+deltaCost < bestSol.cost) {
+					if (deltaCost < minDeltaCost) {
 						minDeltaCost = deltaCost;
 						bestCandIn = candIn;
 						bestCandOut = null;
-//						break;
+						flag = true;
+						if(first) break;
 					}
 				}
 			}
 		}
-		// Evaluate removals
-		for (Integer candOut : incumbentSol) {
-			Double deltaCost = ObjFunction.evaluateRemovalCost(candOut, incumbentSol);
-			if (!TL.contains(candOut) || incumbentSol.cost+deltaCost < bestSol.cost) {
-				if (deltaCost < minDeltaCost) {
-					if(random.nextBoolean()) {
-						minDeltaCost = deltaCost;
-						bestCandIn = null;
-						bestCandOut = candOut;
-//						break;
-					}
-				}
-			}
-		}
-		// Evaluate exchanges
-		for (Integer candIn : CL) {
+		if(!flag) {
+			// Evaluate removals
 			for (Integer candOut : incumbentSol) {
-				Double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, incumbentSol);
-				if ((!TL.contains(candIn) && !TL.contains(candOut)) || incumbentSol.cost+deltaCost < bestSol.cost) {
-					if (deltaCost < minDeltaCost) {
-						if(random.nextBoolean()) {
+				if(checkRandomMode()) {
+					Double deltaCost = ObjFunction.evaluateRemovalCost(candOut, incumbentSol);
+					if (!TL.contains(candOut) || incumbentSol.cost+deltaCost < bestSol.cost) {
+						if (deltaCost < minDeltaCost) {
 							minDeltaCost = deltaCost;
-							bestCandIn = candIn;
+							bestCandIn = null;
 							bestCandOut = candOut;
-//							break;
+							flag = true;
+							if(first) break;
 						}
 					}
 				}
 			}
 		}
+		
+		if(!flag){
+			// Evaluate exchanges
+			for (Integer candOut : incumbentSol) {
+				Solution<Integer> _incumbentSol = new Solution<Integer>(incumbentSol);
+				_incumbentSol.remove(candOut);
+				updateCL(_incumbentSol);
+				for (Integer candIn : CL) {
+					if(checkRandomMode()) {
+						Double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, incumbentSol);
+						if ((!TL.contains(candIn) && !TL.contains(candOut)) || incumbentSol.cost+deltaCost < bestSol.cost) {
+							if (deltaCost < minDeltaCost) {
+								minDeltaCost = deltaCost;
+								bestCandIn = candIn;
+								bestCandOut = candOut;
+								flag = true;
+								if(first) break;
+							}
+						}
+					}
+				}
+				if(flag) break;
+			}
+		}
+		
 		// Implement the best non-tabu move
 		TL.poll();
 		if (bestCandOut != null) {
@@ -189,6 +222,17 @@ public class TS_QBF extends AbstractTS<Integer> {
 		return null;
 	}
 	
+	public void sortSol(Solution<Integer> solution) {
+		solution.sort(new Comparator<Integer>() {
+	        @Override
+	        public int compare(Integer second, Integer first)
+	        {
+	
+	            return  second.compareTo(first);
+	        }
+	    });
+	}
+	
 	/**
 	 * A main method used for testing the TS metaheuristic.
 	 * 
@@ -196,8 +240,9 @@ public class TS_QBF extends AbstractTS<Integer> {
 	public static void main(String[] args) throws IOException {
 
 		long startTime = System.currentTimeMillis();
-		TS_QBF tabusearch = new TS_QBF(20, 10000, "instances/qbf100");
+		TS_QBF tabusearch = new TS_QBF(20, 1000, "instances/qbf040");
 		Solution<Integer> bestSol = tabusearch.solve();
+		tabusearch.sortSol(bestSol);
 		System.out.println("maxVal = " + bestSol);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
