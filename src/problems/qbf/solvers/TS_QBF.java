@@ -1,5 +1,6 @@
 package problems.qbf.solvers;
 
+import java.util.Random;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -120,15 +121,19 @@ public class TS_QBF extends AbstractTS<Integer> {
 		Integer bestCandIn = null, bestCandOut = null;
 
 		minDeltaCost = Double.POSITIVE_INFINITY;
+		Random random = new Random();
 		updateCL();
 		// Evaluate insertions
 		for (Integer candIn : CL) {
 			Double deltaCost = ObjFunction.evaluateInsertionCost(candIn, incumbentSol);
 			if (!TL.contains(candIn) || incumbentSol.cost+deltaCost < bestSol.cost) {
 				if (deltaCost < minDeltaCost) {
-					minDeltaCost = deltaCost;
-					bestCandIn = candIn;
-					bestCandOut = null;
+					if(random.nextBoolean()) {
+						minDeltaCost = deltaCost;
+						bestCandIn = candIn;
+						bestCandOut = null;
+//						break;
+					}
 				}
 			}
 		}
@@ -137,9 +142,12 @@ public class TS_QBF extends AbstractTS<Integer> {
 			Double deltaCost = ObjFunction.evaluateRemovalCost(candOut, incumbentSol);
 			if (!TL.contains(candOut) || incumbentSol.cost+deltaCost < bestSol.cost) {
 				if (deltaCost < minDeltaCost) {
-					minDeltaCost = deltaCost;
-					bestCandIn = null;
-					bestCandOut = candOut;
+					if(random.nextBoolean()) {
+						minDeltaCost = deltaCost;
+						bestCandIn = null;
+						bestCandOut = candOut;
+//						break;
+					}
 				}
 			}
 		}
@@ -149,9 +157,12 @@ public class TS_QBF extends AbstractTS<Integer> {
 				Double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, incumbentSol);
 				if ((!TL.contains(candIn) && !TL.contains(candOut)) || incumbentSol.cost+deltaCost < bestSol.cost) {
 					if (deltaCost < minDeltaCost) {
-						minDeltaCost = deltaCost;
-						bestCandIn = candIn;
-						bestCandOut = candOut;
+						if(random.nextBoolean()) {
+							minDeltaCost = deltaCost;
+							bestCandIn = candIn;
+							bestCandOut = candOut;
+//							break;
+						}
 					}
 				}
 			}
@@ -177,7 +188,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 		
 		return null;
 	}
-
+	
 	/**
 	 * A main method used for testing the TS metaheuristic.
 	 * 

@@ -66,6 +66,26 @@ public abstract class AbstractTS<E> {
 	protected Integer tenure;
 
 	/**
+	 * the flag that represents stop cost.
+	 */
+	protected Double flagCost = 0.0;
+	
+	/**
+	 * the loop stop count.
+	 */
+	protected Integer count = 0;
+	
+	/**
+	 * the start time.
+	 */
+	protected Long startTime = 0l;
+	
+	/**
+	 * the end time.
+	 */
+	protected Long endTime = 0l;
+	
+	/**
 	 * the Candidate List of elements to enter the solution.
 	 */
 	protected ArrayList<E> CL;
@@ -131,6 +151,32 @@ public abstract class AbstractTS<E> {
 	 * @return An local optimum solution.
 	 */
 	public abstract Solution<E> neighborhoodMove();
+	
+	/**
+	 * Decides if it's time or iteration to stop.
+	 * 
+	 * @param bestCost
+	 *            The best cost parameter.
+	 *            
+	 * @return A boolean with the decision.
+	 */
+	public boolean solveStopCriteria(Double bestCost) {
+	   
+	   endTime = System.currentTimeMillis(); 
+	   
+	   if (bestCost.compareTo(flagCost ) < 0) {
+	      flagCost = bestCost;
+	      count = 0;
+	   }
+	   else {
+	      count++;
+	   }
+	   
+	    // false, continua a execução
+	    // true = encerra a execução
+	    // 1800000 ms = 30*60*1000  = 30 min
+	   return (count == 5 || (endTime - startTime) >= 1800000); 
+	}
 
 	/**
 	 * Constructor for the AbstractTS class.
@@ -217,12 +263,15 @@ public abstract class AbstractTS<E> {
 		bestSol = createEmptySol();
 		constructiveHeuristic();
 		TL = makeTL();
+		startTime = System.currentTimeMillis();
 		for (int i = 0; i < iterations; i++) {
-			neighborhoodMove();
-			if (bestSol.cost > incumbentSol.cost) {
-				bestSol = new Solution<E>(incumbentSol);
-				if (verbose)
-					System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+			if(!solveStopCriteria(bestSol.cost)) {
+				neighborhoodMove();
+				if (bestSol.cost > incumbentSol.cost) {
+					bestSol = new Solution<E>(incumbentSol);
+					if (verbose)
+						System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+				}
 			}
 		}
 
