@@ -240,7 +240,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 	public static void main(String[] args) throws IOException {
 
 		long startTime = System.currentTimeMillis();
-		TS_QBF tabusearch = new TS_QBF(20, 1000, "instances/qbf040");
+		TS_QBF tabusearch = new TS_QBF(12, 100, "instances/qbf040");
 		Solution<Integer> bestSol = tabusearch.solve();
 		tabusearch.sortSol(bestSol);
 		System.out.println("maxVal = " + bestSol);
