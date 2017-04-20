@@ -1,6 +1,3 @@
-/**
- * 
- */
 package metaheuristics.tabusearch;
 
 import java.util.ArrayDeque;
@@ -25,12 +22,6 @@ public abstract class AbstractTS<E> {
 	 */
 	public static boolean verbose = true;
 	
-	/**
-	 * flag that indicates whether the code should print more information on
-	 * screen
-	 */
-	public static boolean first = false;
-
 	/**
 	 * a random number generator
 	 */
@@ -60,11 +51,6 @@ public abstract class AbstractTS<E> {
 	 * the incumbent solution
 	 */
 	protected Solution<E> incumbentSol;
-
-	/**
-	 * the number of iterations the TS main loop executes.
-	 */
-	protected Integer iterations;
 	
 	/**
 	 * the tabu tenure.
@@ -75,21 +61,6 @@ public abstract class AbstractTS<E> {
 	 * the flag that represents stop cost.
 	 */
 	protected Double flagCost = 0.0;
-	
-	/**
-	 * the loop stop count.
-	 */
-	protected Integer count = 0;
-	
-	/**
-	 * the start time.
-	 */
-	protected Long startTime = 0l;
-	
-	/**
-	 * the end time.
-	 */
-	protected Long endTime = 0l;
 	
 	/**
 	 * the Candidate List of elements to enter the solution.
@@ -152,7 +123,7 @@ public abstract class AbstractTS<E> {
 	 * 
 	 * @return An empty solution.
 	 */
-	public abstract void sortSol(Solution<E> solution);
+	public abstract void sort(Solution<E> solution);
 
 	/**
 	 * The TS local search phase is responsible for repeatedly applying a
@@ -164,7 +135,7 @@ public abstract class AbstractTS<E> {
 	 * 
 	 * @return An local optimum solution.
 	 */
-	public abstract Solution<E> neighborhoodMove();
+	public abstract void neighborhoodMove();
 	
 	/**
 	 * Decides if it's time or iteration to stop.
@@ -174,23 +145,7 @@ public abstract class AbstractTS<E> {
 	 *            
 	 * @return A boolean with the decision.
 	 */
-	public boolean solveStopCriteria(Double bestCost) {
-	   
-	   endTime = System.currentTimeMillis(); 
-	   
-	   if (bestCost.compareTo(flagCost ) < 0) {
-	      flagCost = bestCost;
-	      count = 0;
-	   }
-	   else {
-	      count++;
-	   }
-	   
-	    // false, continua a execução
-	    // true = encerra a execução
-	    // 1800000 ms = 30*60*1000  = 30 min
-	   return (count == iterations || (endTime - startTime) >= 1800000); 
-	}
+	public abstract boolean solveStopCriteria(Double bestCost);
 
 	/**
 	 * Constructor for the AbstractTS class.
@@ -202,10 +157,9 @@ public abstract class AbstractTS<E> {
 	 * @param iterations
 	 *            The number of iterations which the TS will be executed.
 	 */
-	public AbstractTS(Evaluator<E> objFunction, Integer tenure, Integer iterations) {
+	public AbstractTS(Evaluator<E> objFunction, Integer tenure) {
 		this.ObjFunction = objFunction;
 		this.tenure = tenure;
-		this.iterations = iterations;
 	}
 
 	/**
@@ -227,7 +181,6 @@ public abstract class AbstractTS<E> {
 
 			Double maxCost = Double.NEGATIVE_INFINITY, minCost = Double.POSITIVE_INFINITY;
 			incumbentCost = incumbentSol.cost;
-			updateCL(incumbentSol);
 
 			/*
 			 * Explore all candidate elements to enter the solution, saving the
@@ -255,16 +208,33 @@ public abstract class AbstractTS<E> {
 			/* Choose a candidate randomly from the RCL */
 			int rndIndex = rng.nextInt(RCL.size());
 			E inCand = RCL.get(rndIndex);
-			CL.remove(inCand);
+			
 			incumbentSol.add(inCand);
 			ObjFunction.evaluate(incumbentSol);
 			RCL.clear();
-
+			
+			updateCL(incumbentSol);
 		}
 
 		return incumbentSol;
 	}
 
+	/**
+	 * A standard stopping criteria for the constructive heuristic is to repeat
+	 * until the incumbent solution improves by inserting a new candidate
+	 * element.
+	 * 
+	 * @return true if the criteria is met.
+	 */
+	public Boolean constructiveStopCriteria() {
+		
+		if (CL == null || CL.isEmpty()) {
+			return true;
+		}
+		
+		return (incumbentCost > incumbentSol.cost) ? false : true;
+	}
+	
 	/**
 	 * The TS mainframe. It consists of a constructive heuristic followed by
 	 * a loop, in which each iteration a neighborhood move is performed on
@@ -277,30 +247,19 @@ public abstract class AbstractTS<E> {
 		bestSol = createEmptySol();
 		constructiveHeuristic();
 		TL = makeTL();
-		startTime = System.currentTimeMillis();
+		
 		while(!solveStopCriteria(bestSol.cost)) {
 			neighborhoodMove();
-			if (bestSol.cost > incumbentSol.cost) {
+			if (incumbentSol.cost < bestSol.cost) {
 				bestSol = new Solution<E>(incumbentSol);
 				if (verbose) {
-					this.sortSol(bestSol);
-					System.out.println("BestSol = " + bestSol);
+					//this.sort(bestSol);
+					System.out.println("BestCost => "+bestSol.cost);
 				}
 			}
 		}
 
 		return bestSol;
-	}
-
-	/**
-	 * A standard stopping criteria for the constructive heuristic is to repeat
-	 * until the incumbent solution improves by inserting a new candidate
-	 * element.
-	 * 
-	 * @return true if the criteria is met.
-	 */
-	public Boolean constructiveStopCriteria() {
-		return (incumbentCost > incumbentSol.cost) ? false : true;
 	}
 
 }
