@@ -129,7 +129,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 		  total++;
 	   }
 	   
-	   return (total == iterations || (endTime-startTime) >= limitTime); 
+	   return (total.compareTo(iterations) == 0 || (endTime-startTime) >= limitTime); 
 	}
 
 	/**
@@ -144,6 +144,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 		ArrayList<Pair<Integer,Integer>> ML = new ArrayList<Pair<Integer,Integer>>();
 		
 		Double minDeltaCost = Double.POSITIVE_INFINITY;
+		Double improving = 0.0;
 		
 		Integer bestCandIn = null;
 		Integer bestCandOut = null;
@@ -179,8 +180,8 @@ public class TS_QBF extends AbstractTS<Integer> {
 		// caso seja a estratégia alternativa o tamanho da amostragem aumenta
 		// após uma certa quantidade de iterações sem melhoria
 		
-		if (percent < 1.0 && (float)total/iterations > percent) {
-			length = (int)(ML.size()*((float)total/iterations));
+		if (percent < 1.0 && (float)(total+1)/iterations > percent) {
+			length = (int)(ML.size()*((float)(total+1)/iterations));
 		}
 		
 		for (int i = 0; i < length; ++i) {
@@ -210,8 +211,10 @@ public class TS_QBF extends AbstractTS<Integer> {
 					bestCandOut = candOut;
 				}
 				
-				if (first && minDeltaCost < 0.0) { // first-improving
-					break;
+				if (first) { // first-improving
+					if (minDeltaCost <= improving)
+						improving = minDeltaCost;
+					else if (improving < 0.0) break; 
 				}
 			}
 		}
@@ -249,9 +252,9 @@ public class TS_QBF extends AbstractTS<Integer> {
 	public static void main(String[] args) throws IOException {		
 		
 		Integer _instances[] = {20, 40, 60, 80, 100, 200, 400};
-		
-		Double _tenure[] = {0.20, 0.80};
+	
 		Double _percent[] = {1.0, 0.5};
+		Double _tenure[] = {0.75, 0.9};
 		
 		Boolean _first[] = {false, true};
 		
@@ -264,11 +267,17 @@ public class TS_QBF extends AbstractTS<Integer> {
 					for (Boolean f  : _first) {
 						
 						filename = "qbf"+String.format("%03d", i);
+						iterations = i * 10000;
 						tenure = (int)(i.doubleValue()*t);
 						percent = p; 
 						first = f;
 						
-						System.out.println("filename = "+filename+" tenure = "+tenure+" percent = "+percent+" first = "+first);
+						String output = (percent == 1.0 ? "tb padrão" : "tb alternativo")+"; ";
+						output += "filename = "+filename+"; ";
+						output += "tenure = "+tenure+"; ";
+						output += (first) ? "first-improving" : "best-improving";
+					    
+						System.out.println(output);
 						
 						TS_QBF tabusearch = new TS_QBF(tenure, "instances/"+filename);
 						
@@ -279,7 +288,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 						long totalTime = endTime - startTime;
 						tabusearch.sort(bestSol);
 						
-						System.out.println("maxVal = "+bestSol+" Time = "+(double)totalTime/(double)1000+" seg");
+						System.out.println("maxVal = "+bestSol+"; Time = "+(double)totalTime/(double)1000+" seg\n");
 					}
 				}
 			}
@@ -295,7 +304,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 	
 	static Boolean first = true;
 	
-	static Integer iterations = 100000;
+	static Integer iterations = 200000;
 
 	static Long limitTime = 1800000l;
 	static Long startTime = 0l;
