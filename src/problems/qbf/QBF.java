@@ -78,7 +78,6 @@ public class QBF implements Evaluator<Integer> {
 	 * 
 	 * @see problems.Evaluator#getDomainSize()
 	 */
-	@Override
 	public Integer getDomainSize() {
 		return size;
 	}
@@ -92,7 +91,6 @@ public class QBF implements Evaluator<Integer> {
 	 * 
 	 * @return The evaluation of the QBF.
 	 */
-	@Override
 	public Double evaluate(Solution<Integer> sol) {
 
 		setVariables(sol);
@@ -130,7 +128,6 @@ public class QBF implements Evaluator<Integer> {
 	 * @see problems.Evaluator#evaluateInsertionCost(java.lang.Object,
 	 * solutions.Solution)
 	 */
-	@Override
 	public Double evaluateInsertionCost(Integer elem, Solution<Integer> sol) {
 
 		setVariables(sol);
@@ -161,7 +158,6 @@ public class QBF implements Evaluator<Integer> {
 	 * @see problems.Evaluator#evaluateRemovalCost(java.lang.Object,
 	 * solutions.Solution)
 	 */
-	@Override
 	public Double evaluateRemovalCost(Integer elem, Solution<Integer> sol) {
 
 		setVariables(sol);
@@ -193,7 +189,6 @@ public class QBF implements Evaluator<Integer> {
 	 * @see problems.Evaluator#evaluateExchangeCost(java.lang.Object,
 	 * java.lang.Object, solutions.Solution)
 	 */
-	@Override
 	public Double evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution<Integer> sol) {
 
 		setVariables(sol);
@@ -374,8 +369,6 @@ public class QBF implements Evaluator<Integer> {
 		System.out.println("x = " + Arrays.toString(qbf.variables));
 		System.out.println("f(x) = " + qbf.evaluateQBF());
 		
-		
-
 	}
 
 }

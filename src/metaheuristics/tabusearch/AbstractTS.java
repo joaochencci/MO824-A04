@@ -252,10 +252,11 @@ public abstract class AbstractTS<E> {
 			neighborhoodMove();
 			if (incumbentSol.cost < bestSol.cost) {
 				bestSol = new Solution<E>(incumbentSol);
-				if (verbose) {
+				/*if (verbose) {
 					//this.sort(bestSol);
-					System.out.println("BestCost => "+bestSol.cost);
-				}
+					//System.out.println("BestSol = "+bestSol);
+					System.out.println("BestCost = "+bestSol.cost);
+				}*/
 			}
 		}
 

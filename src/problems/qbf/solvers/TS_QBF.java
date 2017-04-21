@@ -151,11 +151,11 @@ public class TS_QBF extends AbstractTS<Integer> {
 		updateCL(incumbentSol); // a lista contém apenas candidatos viáveis
 		
 		for (Integer candIn : CL) { // adiciona as operações de inserção
-			ML.add(Pair.createPair(candIn, null));
+			ML.add(Pair.createPair(candIn, (Integer)null));
 		}
 		
 		for (Integer candOut : CL) { // adiciona as operações de remoção
-			ML.add(Pair.createPair(null, candOut));
+			ML.add(Pair.createPair((Integer)null, candOut));
 		}
 		
 		for (Integer candOut : incumbentSol) { // adiciona as operações de troca
@@ -237,7 +237,6 @@ public class TS_QBF extends AbstractTS<Integer> {
 	
 	public void sort(Solution<Integer> solution) {
 		solution.sort(new Comparator<Integer>() {
-	        @Override
 	        public int compare(Integer first, Integer second) {
 	            return  first.compareTo(second);
 	        }
@@ -248,22 +247,49 @@ public class TS_QBF extends AbstractTS<Integer> {
 	 * A main method used for testing the TS metaheuristic.
 	 */
 	public static void main(String[] args) throws IOException {		
+		
+		Integer _instances[] = {20, 40, 60, 80, 100, 200, 400};
+		
+		Double _tenure[] = {0.20, 0.80};
+		Double _percent[] = {1.0, 0.5};
+		
+		Boolean _first[] = {false, true};
+		
+		for (Integer i : _instances) {
+		
+			for (Double t : _tenure) {
 				
-		TS_QBF tabusearch = new TS_QBF(tenure, "instances/"+filename);
+				for (Double p : _percent) {
+					
+					for (Boolean f  : _first) {
+						
+						filename = "qbf"+String.format("%03d", i);
+						tenure = (int)(i.doubleValue()*t);
+						percent = p; 
+						first = f;
+						
+						System.out.println("filename = "+filename+" tenure = "+tenure+" percent = "+percent+" first = "+first);
+						
+						TS_QBF tabusearch = new TS_QBF(tenure, "instances/"+filename);
+						
+						startTime = System.currentTimeMillis();
+						Solution<Integer> bestSol = tabusearch.solve();
+						endTime = System.currentTimeMillis();
+						
+						long totalTime = endTime - startTime;
+						tabusearch.sort(bestSol);
+						
+						System.out.println("maxVal = "+bestSol+" Time = "+(double)totalTime/(double)1000+" seg");
+					}
+				}
+			}
+		}
 		
-		startTime = System.currentTimeMillis();
-		Solution<Integer> bestSol = tabusearch.solve();
-		endTime = System.currentTimeMillis();
-		
-		long totalTime = endTime - startTime;
-		tabusearch.sort(bestSol);
-		
-		System.out.println("maxVal = "+bestSol+" Time = "+(double)totalTime/(double)1000+" seg");
 	}
 
 	// parâmetros e configurações para testes
 	
-	static String filename = "qbf060";
+	static String filename = "qbf020";
 	static Integer tenure = 10;
 	static Double percent = 1.0; 
 	
