@@ -201,7 +201,7 @@ public abstract class AbstractTS<E> {
 			 */
 			for (E c : CL) {
 				Double deltaCost = ObjFunction.evaluateInsertionCost(c, incumbentSol);
-				if (deltaCost <= minCost) { //+  0.28016949902386913303 * (maxCost - minCost)) {
+				if (deltaCost <= minCost || deltaCost >= maxCost) {
 					RCL.add(c);
 				}
 			}
