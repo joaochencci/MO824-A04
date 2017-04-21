@@ -173,7 +173,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 			}
 		}
 		
-		Collections.shuffle(ML);
+		Collections.shuffle(ML, rng);
 		
 		int length = (int)(ML.size()*percent);
 		
@@ -203,7 +203,8 @@ public class TS_QBF extends AbstractTS<Integer> {
 				deltaCost = ObjFunction.evaluateRemovalCost(candOut, incumbentSol);
 			}
 			
-			if ((!TL.contains(candIn) && !TL.contains(candOut)) || incumbentSol.cost+deltaCost < bestSol.cost) {
+			if ((candIn != null && !TL.contains(candIn)) || (candOut != null && !TL.contains(candOut)) 
+					|| incumbentSol.cost+deltaCost < bestSol.cost) {
 				
 				if (deltaCost < minDeltaCost) {
 					minDeltaCost = deltaCost;
@@ -253,8 +254,8 @@ public class TS_QBF extends AbstractTS<Integer> {
 		
 		Integer _instances[] = {20, 40, 60, 80, 100, 200, 400};
 	
-		Double _percent[] = {1.0, 0.5};
-		Double _tenure[] = {0.75, 0.9};
+		Double _percent[] = {1.0, 0.7};
+		Double _tenure[] = {0.35, 0.7};
 		
 		Boolean _first[] = {false, true};
 		
@@ -267,14 +268,14 @@ public class TS_QBF extends AbstractTS<Integer> {
 					for (Boolean f  : _first) {
 						
 						filename = "qbf"+String.format("%03d", i);
-						iterations = i * 10000;
+						iterations = (int)(Math.log10(i) * 100000);
 						tenure = (int)(i.doubleValue()*t);
 						percent = p; 
 						first = f;
 						
 						String output = (percent == 1.0 ? "tb padrão" : "tb alternativo")+"; ";
 						output += "filename = "+filename+"; ";
-						output += "tenure = "+tenure+"; ";
+						output += "tenure = "+t+"; ";
 						output += (first) ? "first-improving" : "best-improving";
 					    
 						System.out.println(output);

@@ -1,0 +1,143 @@
+tb padrão; filename = qbf020; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.726 seg
+
+tb padrão; filename = qbf020; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.546 seg
+
+tb alternativo; filename = qbf020; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.158 seg
+
+tb alternativo; filename = qbf020; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 1.985 seg
+
+tb padrão; filename = qbf020; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.331 seg
+
+tb padrão; filename = qbf020; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.352 seg
+
+tb alternativo; filename = qbf020; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.009 seg
+
+tb alternativo; filename = qbf020; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-104.0], size=[9], elements=[0, 2, 4, 7, 9, 12, 14, 16, 18]; Time = 2.014 seg
+
+tb padrão; filename = qbf040; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-238.0], size=[18], elements=[0, 2, 4, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 28, 32, 34, 36, 38]; Time = 27.971 seg
+
+tb padrão; filename = qbf040; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-251.0], size=[15], elements=[0, 2, 4, 7, 9, 11, 15, 18, 21, 24, 27, 29, 32, 34, 36]; Time = 25.154 seg
+
+tb alternativo; filename = qbf040; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-220.0], size=[15], elements=[0, 4, 6, 9, 11, 15, 18, 20, 22, 24, 27, 29, 32, 34, 36]; Time = 20.954 seg
+
+tb alternativo; filename = qbf040; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-251.0], size=[15], elements=[0, 2, 4, 7, 9, 11, 15, 18, 21, 24, 27, 29, 32, 34, 36]; Time = 20.603 seg
+
+tb padrão; filename = qbf040; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-251.0], size=[15], elements=[0, 2, 4, 7, 9, 11, 15, 18, 21, 24, 27, 29, 32, 34, 36]; Time = 30.998 seg
+
+tb padrão; filename = qbf040; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-235.0], size=[16], elements=[0, 2, 4, 7, 9, 11, 13, 15, 18, 21, 24, 27, 29, 32, 34, 36]; Time = 22.16 seg
+
+tb alternativo; filename = qbf040; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-221.0], size=[15], elements=[0, 4, 6, 9, 11, 15, 18, 20, 22, 24, 27, 29, 31, 33, 36]; Time = 20.876 seg
+
+tb alternativo; filename = qbf040; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-210.0], size=[19], elements=[0, 2, 4, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 28, 30, 32, 34, 36, 38]; Time = 20.656 seg
+
+tb padrão; filename = qbf060; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-392.0], size=[23], elements=[1, 4, 7, 9, 14, 17, 19, 23, 26, 28, 30, 32, 35, 38, 40, 42, 44, 47, 49, 51, 53, 56, 59]; Time = 117.686 seg
+
+tb padrão; filename = qbf060; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-311.0], size=[21], elements=[0, 2, 4, 9, 11, 14, 17, 20, 23, 26, 28, 31, 33, 38, 40, 42, 44, 47, 50, 52, 56]; Time = 139.144 seg
+
+tb alternativo; filename = qbf060; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-382.0], size=[19], elements=[2, 4, 14, 17, 20, 22, 24, 27, 29, 31, 35, 38, 42, 44, 49, 51, 53, 56, 59]; Time = 86.192 seg
+
+tb alternativo; filename = qbf060; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-309.0], size=[21], elements=[0, 3, 8, 11, 14, 16, 18, 21, 24, 27, 30, 32, 39, 41, 44, 46, 49, 51, 53, 57, 59]; Time = 85.018 seg
+
+tb padrão; filename = qbf060; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-354.0], size=[18], elements=[4, 9, 11, 14, 17, 21, 23, 26, 28, 30, 34, 38, 40, 42, 44, 49, 52, 56]; Time = 88.733 seg
+
+tb padrão; filename = qbf060; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-374.0], size=[20], elements=[0, 2, 4, 14, 17, 20, 22, 24, 27, 29, 31, 35, 38, 41, 44, 49, 51, 53, 56, 59]; Time = 122.017 seg
+
+tb alternativo; filename = qbf060; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-360.0], size=[19], elements=[4, 9, 11, 14, 17, 21, 23, 26, 28, 30, 34, 38, 40, 42, 44, 49, 51, 53, 56]; Time = 85.095 seg
+
+tb alternativo; filename = qbf060; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-349.0], size=[22], elements=[0, 2, 4, 11, 14, 16, 18, 20, 22, 24, 27, 29, 31, 33, 38, 41, 44, 46, 49, 51, 53, 56]; Time = 86.426 seg
+
+tb padrão; filename = qbf080; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-584.0], size=[24], elements=[2, 9, 12, 17, 19, 22, 24, 27, 29, 37, 39, 42, 46, 48, 52, 54, 58, 60, 62, 64, 69, 71, 73, 76]; Time = 290.8 seg
+
+tb padrão; filename = qbf080; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-592.0], size=[28], elements=[1, 3, 7, 9, 13, 16, 18, 22, 24, 31, 34, 37, 40, 42, 44, 46, 49, 51, 54, 58, 60, 62, 64, 66, 69, 71, 73, 76]; Time = 288.506 seg
+
+tb alternativo; filename = qbf080; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-563.0], size=[32], elements=[1, 3, 9, 12, 14, 16, 18, 20, 22, 24, 27, 29, 31, 34, 37, 40, 42, 44, 46, 49, 51, 53, 55, 58, 60, 62, 64, 67, 69, 71, 73, 76]; Time = 251.517 seg
+
+tb alternativo; filename = qbf080; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-553.0], size=[27], elements=[2, 4, 6, 8, 11, 14, 16, 18, 23, 26, 28, 31, 35, 39, 42, 44, 47, 50, 52, 55, 59, 61, 65, 68, 75, 77, 79]; Time = 254.316 seg
+
+tb padrão; filename = qbf080; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-547.0], size=[26], elements=[2, 4, 6, 12, 14, 16, 18, 20, 22, 24, 34, 37, 42, 44, 47, 49, 51, 55, 58, 61, 64, 69, 71, 73, 76, 79]; Time = 253.571 seg
+
+tb padrão; filename = qbf080; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-585.0], size=[26], elements=[2, 9, 12, 14, 17, 19, 22, 24, 27, 29, 37, 39, 42, 46, 48, 50, 52, 55, 58, 60, 62, 64, 69, 71, 73, 76]; Time = 253.777 seg
+
+tb alternativo; filename = qbf080; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-543.0], size=[28], elements=[2, 4, 7, 9, 11, 13, 17, 19, 23, 27, 29, 31, 36, 39, 42, 44, 46, 48, 52, 54, 59, 61, 65, 69, 71, 73, 75, 77]; Time = 249.979 seg
+
+tb alternativo; filename = qbf080; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-521.0], size=[26], elements=[0, 2, 6, 12, 14, 18, 22, 24, 26, 28, 34, 37, 39, 41, 43, 47, 50, 52, 55, 58, 62, 64, 71, 74, 76, 79]; Time = 247.648 seg
+
+tb padrão; filename = qbf100; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-791.0], size=[35], elements=[0, 3, 6, 10, 14, 17, 22, 24, 29, 31, 33, 37, 39, 43, 47, 49, 51, 57, 59, 62, 64, 66, 68, 71, 74, 76, 79, 84, 86, 89, 91, 93, 95, 97, 99]; Time = 783.435 seg
+
+tb padrão; filename = qbf100; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-782.0], size=[34], elements=[2, 4, 7, 10, 12, 14, 17, 19, 23, 26, 28, 31, 33, 36, 38, 41, 43, 45, 48, 51, 55, 59, 62, 64, 68, 70, 72, 74, 79, 81, 85, 95, 97, 99]; Time = 855.832 seg
+
+tb alternativo; filename = qbf100; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-791.0], size=[36], elements=[2, 4, 7, 10, 12, 14, 16, 18, 20, 23, 26, 28, 31, 34, 36, 39, 41, 43, 45, 48, 51, 56, 59, 61, 63, 68, 70, 72, 75, 79, 81, 85, 88, 95, 97, 99]; Time = 570.909 seg
+
+tb alternativo; filename = qbf100; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-852.0], size=[36], elements=[2, 7, 10, 12, 14, 16, 18, 23, 25, 27, 29, 31, 34, 37, 39, 41, 44, 47, 51, 53, 56, 59, 62, 64, 68, 70, 72, 74, 79, 81, 85, 89, 91, 93, 95, 97]; Time = 562.457 seg
+
+tb padrão; filename = qbf100; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-785.0], size=[30], elements=[2, 7, 9, 14, 17, 19, 23, 27, 29, 31, 33, 37, 39, 42, 44, 51, 56, 59, 62, 64, 66, 68, 70, 72, 74, 78, 80, 85, 89, 96]; Time = 778.869 seg
+
+tb padrão; filename = qbf100; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-802.0], size=[36], elements=[2, 4, 7, 10, 12, 14, 16, 18, 22, 27, 29, 34, 36, 39, 41, 44, 47, 51, 53, 56, 59, 62, 64, 66, 68, 70, 72, 75, 79, 81, 84, 86, 89, 91, 93, 95]; Time = 778.602 seg
+
+tb alternativo; filename = qbf100; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-797.0], size=[32], elements=[2, 7, 10, 14, 16, 18, 20, 23, 29, 32, 34, 37, 39, 42, 44, 47, 49, 51, 57, 59, 63, 66, 68, 71, 73, 78, 80, 82, 84, 90, 92, 96]; Time = 562.491 seg
+
+tb alternativo; filename = qbf100; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-745.0], size=[35], elements=[0, 2, 4, 6, 9, 13, 15, 17, 21, 23, 29, 34, 39, 41, 44, 51, 54, 57, 59, 61, 63, 66, 68, 70, 73, 75, 78, 80, 82, 84, 89, 91, 94, 96, 98]; Time = 561.48 seg
+
+tb padrão; filename = qbf200; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-2905.0], size=[75], elements=[1, 4, 7, 11, 13, 17, 19, 21, 23, 25, 28, 31, 34, 39, 43, 45, 47, 49, 51, 54, 56, 61, 63, 65, 67, 69, 72, 77, 80, 83, 85, 87, 90, 92, 94, 96, 99, 101, 103, 108, 110, 114, 117, 119, 121, 123, 125, 127, 129, 131, 134, 136, 141, 143, 145, 148, 152, 155, 157, 160, 162, 165, 167, 169, 172, 175, 177, 179, 181, 184, 189, 191, 193, 195, 198]; Time = 1800.003 seg
+
+tb padrão; filename = qbf200; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-3148.0], size=[77], elements=[4, 7, 9, 11, 13, 16, 18, 21, 23, 25, 28, 30, 32, 34, 38, 41, 43, 45, 47, 49, 51, 54, 56, 58, 61, 63, 66, 68, 70, 72, 77, 80, 83, 85, 87, 89, 92, 95, 99, 101, 103, 108, 110, 114, 117, 119, 121, 124, 126, 129, 131, 133, 136, 139, 141, 145, 147, 150, 153, 155, 157, 160, 162, 164, 167, 169, 172, 174, 176, 179, 181, 184, 186, 191, 193, 195, 199]; Time = 1800.0 seg
+
+tb alternativo; filename = qbf200; tenure = 0.35; best-improving
+maxVal = Solution: cost=[-2921.0], size=[75], elements=[1, 4, 7, 12, 15, 17, 19, 21, 23, 25, 29, 32, 34, 39, 41, 43, 45, 48, 50, 52, 54, 56, 60, 63, 65, 67, 70, 72, 74, 77, 81, 83, 85, 87, 90, 92, 94, 96, 100, 104, 106, 108, 111, 114, 117, 119, 121, 125, 129, 131, 133, 136, 138, 141, 143, 145, 148, 150, 153, 155, 157, 160, 162, 164, 167, 170, 172, 174, 177, 179, 181, 184, 189, 192, 196]; Time = 1800.002 seg
+
+tb alternativo; filename = qbf200; tenure = 0.35; first-improving
+maxVal = Solution: cost=[-3020.0], size=[76], elements=[1, 4, 7, 9, 11, 13, 16, 18, 21, 23, 25, 28, 30, 32, 34, 39, 41, 44, 46, 49, 51, 54, 56, 58, 62, 65, 67, 69, 72, 74, 77, 81, 84, 87, 90, 92, 94, 96, 100, 103, 105, 107, 110, 112, 114, 117, 119, 125, 127, 129, 131, 133, 136, 139, 141, 143, 145, 148, 150, 153, 155, 157, 159, 162, 164, 167, 169, 171, 174, 176, 179, 181, 184, 189, 192, 199]; Time = 1800.002 seg
+
+tb padrão; filename = qbf200; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-3245.0], size=[76], elements=[1, 4, 7, 9, 12, 15, 17, 19, 21, 23, 25, 28, 30, 32, 34, 39, 41, 43, 46, 48, 50, 52, 54, 56, 58, 61, 63, 65, 68, 70, 72, 74, 77, 81, 83, 85, 87, 89, 91, 95, 100, 103, 108, 111, 113, 116, 119, 121, 124, 126, 129, 131, 133, 136, 139, 141, 143, 145, 148, 150, 153, 155, 157, 162, 164, 167, 169, 172, 174, 176, 179, 181, 183, 185, 192, 196]; Time = 1800.002 seg
+
+tb padrão; filename = qbf200; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-3123.0], size=[79], elements=[4, 7, 9, 11, 13, 16, 19, 21, 23, 25, 28, 30, 32, 34, 38, 40, 43, 45, 47, 49, 51, 54, 56, 58, 61, 63, 65, 67, 69, 72, 77, 80, 83, 85, 87, 89, 93, 95, 97, 99, 101, 103, 108, 110, 114, 117, 119, 121, 124, 126, 129, 131, 133, 137, 139, 141, 143, 145, 147, 151, 153, 155, 157, 160, 162, 164, 166, 169, 172, 174, 176, 179, 181, 184, 190, 193, 195, 197, 199]; Time = 1800.002 seg
+
+tb alternativo; filename = qbf200; tenure = 0.7; best-improving
+maxVal = Solution: cost=[-2946.0], size=[73], elements=[1, 4, 7, 9, 16, 18, 21, 23, 25, 28, 30, 32, 34, 36, 38, 40, 44, 46, 49, 51, 53, 56, 58, 63, 66, 69, 72, 74, 77, 80, 82, 84, 86, 89, 92, 95, 97, 100, 103, 105, 107, 110, 112, 114, 117, 119, 125, 129, 131, 133, 136, 139, 141, 143, 145, 148, 151, 153, 155, 157, 159, 162, 164, 166, 169, 171, 173, 176, 179, 184, 193, 196, 199]; Time = 1800.002 seg
+
+tb alternativo; filename = qbf200; tenure = 0.7; first-improving
+maxVal = Solution: cost=[-2727.0], size=[79], elements=[1, 3, 5, 7, 9, 13, 15, 17, 19, 21, 23, 25, 28, 30, 32, 34, 39, 41, 43, 45, 47, 49, 51, 54, 56, 61, 63, 66, 68, 70, 72, 74, 76, 78, 80, 83, 86, 89, 92, 94, 96, 99, 101, 103, 105, 108, 110, 114, 117, 119, 121, 125, 129, 131, 133, 136, 139, 141, 144, 146, 148, 154, 156, 158, 160, 164, 166, 169, 172, 175, 177, 179, 181, 184, 186, 188, 191, 193, 195]; Time = 1800.0 seg
