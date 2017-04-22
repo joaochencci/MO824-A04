@@ -254,7 +254,7 @@ public class TS_QBF extends AbstractTS<Integer> {
 		
 		Integer _instances[] = {20, 40, 60, 80, 100, 200, 400};
 	
-		Double _percent[] = {1.0, 0.7};
+		Double _percent[] = {1.0, 0.5};
 		Double _tenure[] = {0.3, 0.37};
 		
 		Boolean _first[] = {false, true};
